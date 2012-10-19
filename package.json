@@ -1,0 +1,25 @@
+{
+  "name": "gcli-ambiance-plugin",
+  "id": "gcli-ambiance-plugin",
+  "version": "0.0.1",
+  "description": "GCLI plugin for ambiance editor",
+  "keywords": [ "gcli", "ambiance", "editor", "plugin" ],
+  "author": "Irakli Gozalishvili <rfobic@gmail.com> (http://jeditoolkit.com)",
+  "homepage": "https://github.com/Gozala/gcli-ambiance-plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gozala/gcli-ambiance-plugin.git",
+    "web": "https://github.com/Gozala/gcli-ambiance-plugin"
+  },
+  "bugs": {
+    "url": "http://github.com/Gozala/gcli-ambiance-plugin/issues/"
+  },
+  "main": "./gcli.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "licenses": [{
+    "type" : "MIT",
+    "url" : "http://jeditoolkit.com/LICENSE"
+  }]
+}
