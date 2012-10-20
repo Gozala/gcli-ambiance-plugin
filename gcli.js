@@ -16,6 +16,8 @@ var Conversion = GCLI.require('gcli/types').Conversion
 var Argument = GCLI.require('gcli/argument').Argument
 
 var demo = GCLI.require('demo/index');
+var path = require("path")
+var resources = path.join(path.dirname(module.filename), "resource")
 
 exports.name = 'gcli-plug'
 exports.version = '0.0.1'
@@ -189,9 +191,36 @@ plugin.unplug = meta('Unplugs commands & types', function unplug(env, plugin) {
   return plugin.types && type.unplug.all(env, plugin.types)
 })
 
+
+function importStylesheet(uri, document) {
+  var style = document.createElement("link")
+  style.setAttribute("rel", "stylesheet")
+  style.setAttribute("type", "text/css")
+  style.setAttribute("href", uri)
+  document.head.appendChild(style)
+}
+
+function disposeStylesheet(uri, document) {
+  var styles = document.querySelectorAll("link")
+  var count = styles.length
+  var index = 0
+  while (index < count) {
+    var style = styles[index]
+    if (style.getAttribute("href") === uri) {
+      style.parentNode.removeChild(style)
+      return
+    }
+  }
+}
+
 exports.onstartup = meta({
   description: 'Hook that registers all plugin commands & types'
 }, function onstartup(env, plugins) {
+  importStylesheet(path.join(resources, "gcli.css"), document)
+  // Strange rendering glitch draws GCLI suggestions at the top of
+  // the window, resize seems to help it.
+  window.resizeBy(0, 1)
+
   var displayView = document.createElement("div")
   displayView.setAttribute("id", "gcli-display")
   document.body.appendChild(displayView)
@@ -244,6 +273,8 @@ exports.onstartup = meta({
 exports.onshutdown = meta({
   description: 'Hook that unregisters unplugged add-on commands & types'
 }, function onshutdown(env) {
+  disposeStylesheet(path.join(resources, "gcli.css"), document)
+
   document.body.removeChild(env.gcliDisplayView)
   document.body.removeChild(env.gcliInputView)
 
