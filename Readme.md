@@ -1,9 +1,9 @@
-# ambiance-command-manager
+# gcli-ambiance-plugin
 
-[![Build Status](https://secure.travis-ci.org/Gozala/ambiance-command-manager.png)](http://travis-ci.org/Gozala/ambiance-command-manager)
-
-Command manager for ambiance editor
+[GCLI](https://github.com/mozilla/gcli) plugin for [ambiance][] editor.
 
 ## Install
 
-    npm install ambiance-command-manager
+    npm install gcli-ambiance-plugin
+
+[ambiance]:https://github.com/Gozala/ambiance
